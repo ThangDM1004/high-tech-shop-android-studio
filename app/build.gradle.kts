@@ -37,8 +37,10 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    implementation(files("D:\\source-android\\high_tech_shop\\app\\libs\\jtds-1.3.1.jar"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation("android.arch.persistence.room:runtime:1.0.0")
+    annotationProcessor("android.arch.persistence.room:compiler:1.0.0")
+
 }
