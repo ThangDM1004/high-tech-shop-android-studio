@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private ProductSubImageRepository productSubImageRepository;
     private PaymentRepository paymentRepository;
     TextView textView;
-     @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
