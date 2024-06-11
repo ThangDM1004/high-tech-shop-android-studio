@@ -14,9 +14,9 @@ public class User {
     private boolean status;
     private String password;
     private String fullName;
-    private String role;
+    private Role role;
 
-    public User(int id, String email, String phone, String image, String dob, boolean status, String password, String fullName, String role) {
+    public User(int id, String email, String phone, String image, String dob, boolean status, String password, String fullName, Role role) {
         this.id = id;
         this.email = email;
         this.phone = phone;
@@ -92,11 +92,11 @@ public class User {
         this.fullName = fullName;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 }
