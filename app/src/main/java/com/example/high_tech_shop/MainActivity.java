@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
          HighTechShopRoomDatabase database = Room.databaseBuilder(this, HighTechShopRoomDatabase.class, "HighTechShop")
                  .allowMainThreadQueries()
                  .build();
-//test
-         //Chạy lần đầu thì mở nó ra
+
+//       Chạy lần đầu thì mở nó ra
 //       DataCommon.initData(this);
      }
 }
