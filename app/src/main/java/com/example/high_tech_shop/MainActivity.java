@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private ProductSubImageRepository productSubImageRepository;
     private PaymentRepository paymentRepository;
     TextView textView;
-     @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                  .allowMainThreadQueries()
                  .build();
 
-         //Chạy lần đầu thì mở nó ra
+//       Chạy lần đầu thì mở nó ra
 //       DataCommon.initData(this);
      }
 }

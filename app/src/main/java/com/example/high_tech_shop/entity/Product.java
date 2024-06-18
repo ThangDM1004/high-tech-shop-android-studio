@@ -8,15 +8,15 @@ public class Product {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
-    private String image;
+    private String description;
     private String coverImage;
     private Boolean status;
     private int categoryId;
 
-    public Product(int id, String name, String image, String coverImage, Boolean status, int categoryId) {
+    public Product(int id, String name, String description, String coverImage, Boolean status, int categoryId) {
         this.id = id;
         this.name = name;
-        this.image = image;
+        this.description = description;
         this.coverImage = coverImage;
         this.status = status;
         this.categoryId = categoryId;
@@ -38,12 +38,12 @@ public class Product {
         this.name = name;
     }
 
-    public String getImage() {
-        return image;
+    public String getDescription() {
+        return description;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setDescription(String image) {
+        this.description = image;
     }
 
     public String getCoverImage() {

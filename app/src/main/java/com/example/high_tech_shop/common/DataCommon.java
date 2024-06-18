@@ -3,8 +3,11 @@ package com.example.high_tech_shop.common;
 import android.content.Context;
 import android.widget.Toast;
 
+import androidx.room.TypeConverters;
+
 import com.example.high_tech_shop.entity.Category;
 import com.example.high_tech_shop.entity.Product;
+import com.example.high_tech_shop.entity.Role;
 import com.example.high_tech_shop.entity.User;
 import com.example.high_tech_shop.entity.UserAddress;
 import com.example.high_tech_shop.repositories.CategoryRepository;
@@ -13,6 +16,7 @@ import com.example.high_tech_shop.repositories.UserAddressRepository;
 import com.example.high_tech_shop.repositories.UserRepository;
 
 import java.util.Arrays;
+
 
 public class DataCommon {
     public static void initData(Context context) {
@@ -24,11 +28,11 @@ public class DataCommon {
     }
 
     private static void insertUser(Context context){
-        User user_1 = new User(1, "admin@gmail.com", "1234567890", "image.png", "10/04/2002", true, "12345", "admin", "admin");
-        User user_2 = new User(2, "shipper@gmail.com", "1234567890", "image.png", "10/04/2002", true, "12345", "shipper", "shipper");
-        User user_3 = new User(3, "user1@gmail.com", "1234567890", "image.png", "10/04/2002", true, "12345", "user1", "user");
-        User user_4 = new User(4, "user2@gmail.com", "1234567890", "image.png", "10/04/2002", true, "12345", "user2", "user");
-        User user_5 = new User(5, "user3@gmail.com", "1234567890", "image.png", "10/04/2002", true, "12345", "user3", "user");
+        User user_1 = new User(1, "admin@gmail.com", "1234567890", "image.png", "10/04/2002", true, "12345", "admin", Role.ADMIN);
+        User user_2 = new User(2, "shipper@gmail.com", "1234567890", "image.png", "10/04/2002", true, "12345", "shipper", Role.SHIPPER);
+        User user_3 = new User(3, "user1@gmail.com", "1234567890", "image.png", "10/04/2002", true, "12345", "user1", Role.USER);
+        User user_4 = new User(4, "user2@gmail.com", "1234567890", "image.png", "10/04/2002", true, "12345", "user2", Role.USER);
+        User user_5 = new User(5, "user3@gmail.com", "1234567890", "image.png", "10/04/2002", true, "12345", "user3", Role.USER);
 
         UserRepository userRepository = new UserRepository(context);
         userRepository.insert(Arrays.asList(user_1, user_2, user_3, user_4, user_5));
