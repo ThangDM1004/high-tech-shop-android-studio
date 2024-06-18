@@ -1,4 +1,4 @@
-package com.example.high_tech_shop;
+package com.example.high_tech_shop.user;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.high_tech_shop.R;
 
 public class HomePageActivity extends AppCompatActivity {
 
