@@ -19,4 +19,22 @@ public class CartRepository {
     public void insertAll(List<Cart> carts) {
         cartDAO.insertCart(carts);
     }
+    public Cart getCartByUserIdTrue(int userId) {
+        return cartDAO.getCartByUserIdTrue(userId);
+    }
+    public void insert(Cart cart){
+        cartDAO.insert(cart);
+    }
+    public void update(Cart cart){
+        cartDAO.update(cart);
+    }
+    public void updateAllCartsStatusToFalse(int userId){
+        cartDAO.updateAllCartsStatusToFalse(userId);
+    }
+    public List<Cart> getAll(){
+        return cartDAO.getAll();
+    }
+    public void delete(Cart cart){cartDAO.delete(cart);}
+    public void deleteAll(){cartDAO.deleteAll();}
+
 }

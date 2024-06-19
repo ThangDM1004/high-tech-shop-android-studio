@@ -19,4 +19,14 @@ public class ProductRepository {
     public Product get(int id){
         return productDAO.get(id);
     }
+    public List<Product> getAll(){
+        return productDAO.getAll();
+    }
+    public void deleteAll(){
+        productDAO.deleteAll();
+    }
+
+    public List<Product> getProductsByCategoryId(int categoryId){
+        return productDAO.getProductsByCategoryId(categoryId);
+    }
 }

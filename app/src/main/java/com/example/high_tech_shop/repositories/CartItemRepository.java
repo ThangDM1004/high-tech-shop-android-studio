@@ -17,4 +17,25 @@ public class CartItemRepository {
     public void insert(List<CartItem> cartItem) {
         this.cartItemDAO.insertCartItem(cartItem);
     }
+    public void insert(CartItem cartItem) {
+        this.cartItemDAO.insertCartItem(cartItem);
+    }
+    public void delete(CartItem cartItem) {
+        this.cartItemDAO.deleteCartItem(cartItem);
+    }
+    public void deleteAll() {
+        this.cartItemDAO.deleteAll();
+    }
+    public void update(CartItem cartItem){
+        cartItemDAO.updateCartItem(cartItem);
+    }
+    public List<CartItem> getAll(){
+        return cartItemDAO.getCarts();
+    }
+    public CartItem getCartItemByCartAndProductId(int cartId, int productId) {
+        return cartItemDAO.getCartItemByCartAndProductId(cartId,productId);
+    }
+    public List<CartItem> getCartItemByCartId(int cartId){
+        return cartItemDAO.getCartItemByCartId(cartId);
+    }
 }

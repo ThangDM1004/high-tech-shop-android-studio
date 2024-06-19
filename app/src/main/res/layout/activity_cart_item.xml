@@ -7,8 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
-    android:background="@drawable/grey_background"
-    tools:context=".CartItemActivity">
+    android:background="@drawable/grey_background">
 
     <View
         android:id="@+id/view5"
@@ -73,8 +72,9 @@
         android:id="@+id/constraintLayout3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageView16"
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
@@ -89,7 +89,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView35"
+            android:id="@+id/etCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -100,7 +100,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView33"
             app:layout_constraintStart_toEndOf="@+id/textView36"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/textView36"
@@ -114,5 +115,15 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/delete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

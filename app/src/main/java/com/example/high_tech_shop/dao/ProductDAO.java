@@ -15,8 +15,13 @@ public interface ProductDAO {
     void update(Product product);
     @Delete
     void delete(Product product);
+    @Query("DELETE FROM product")
+    void deleteAll();
     @Query("SELECT * FROM product WHERE id = :id")
     Product get(int id);
     @Query("SELECT * FROM product")
     List<Product> getAll();
+    @Query("SELECT * FROM product WHERE categoryId = :categoryId")
+    List<Product> getProductsByCategoryId(int categoryId);
+
 }
