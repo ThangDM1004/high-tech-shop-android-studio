@@ -10,6 +10,8 @@ import java.util.List;
 public interface CategoryDAO {
     @Query("SELECT * FROM Category")
     List<Category> findAll();
+    @Query("DELETE FROM Category")
+    void deleteALl();
     @Query("SELECT * FROM Category WHERE id = :id")
     Category findById(int id);
     @Insert

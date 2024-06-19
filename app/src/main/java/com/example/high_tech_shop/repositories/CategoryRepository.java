@@ -16,4 +16,10 @@ public class CategoryRepository {
     public void insert(List<Category> category) {
         categoryDAO.insert(category);
     }
+    public void deleteAll() {
+        categoryDAO.deleteALl();
+    }
+    public Category findById(int id){
+        return  categoryDAO.findById(id);
+    }
 }

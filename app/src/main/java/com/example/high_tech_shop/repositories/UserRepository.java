@@ -16,4 +16,7 @@ public class UserRepository {
     public void insert(List<User> users){
         this.userDAO.insert(users);
     }
+    public void deleteAll(){
+        this.userDAO.deleteAll();
+    }
 }

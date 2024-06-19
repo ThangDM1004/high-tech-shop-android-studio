@@ -10,21 +10,34 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.high_tech_shop.MainActivity;
 import com.example.high_tech_shop.R;
+import com.example.high_tech_shop.common.DataCommon;
 import com.example.high_tech_shop.dao.UserDAO;
+import com.example.high_tech_shop.entity.Role;
 import com.example.high_tech_shop.entity.User;
+import com.example.high_tech_shop.repositories.CartItemRepository;
+import com.example.high_tech_shop.repositories.CartRepository;
 import com.example.high_tech_shop.room.HighTechShopRoomDatabase;
 
 import java.io.Serializable;
 
 public class UserLoginFormActivity extends AppCompatActivity{
     UserDAO userDAO;
+    CartRepository cartRepository;
+    CartItemRepository cartItemRepository;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login_form);
         setTitle("Login");
+//        DataCommon.removeData(this);
+//        DataCommon.initData(this);
+        cartRepository = new CartRepository(this);
+        cartItemRepository = new CartItemRepository(this);
+        cartItemRepository.deleteAll();
+        cartRepository.deleteAll();
         Button loginButton = findViewById(R.id.loginButton);
         userDAO = HighTechShopRoomDatabase.getInstance(this).userDAO();
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,8 +50,8 @@ public class UserLoginFormActivity extends AppCompatActivity{
                     User user = userDAO.selectUserByUsernameAndPassword(username,password);
                     if (user==null) {
                         Toast.makeText(UserLoginFormActivity.this, "Login fail", Toast.LENGTH_SHORT).show();
-                    }else {
-                        Intent intent = new Intent(UserLoginFormActivity.this, MainActivity.class);
+                    }else if(user.getRole() == Role.USER){
+                        Intent intent = new Intent(UserLoginFormActivity.this, HomePageActivity.class);
                         intent.putExtra("user", (Serializable) user);
                         startActivity(intent);
                     }

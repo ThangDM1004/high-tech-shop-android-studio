@@ -25,7 +25,7 @@
                 android:layout_marginEnd="24dp">
 
                 <ImageView
-                    android:id="@+id/rv_popular"
+                    android:id="@+id/imageBell"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -40,6 +40,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Welcome"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -49,10 +51,10 @@
                     android:id="@+id/imageView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@+id/rv_popular"
-                    app:layout_constraintEnd_toEndOf="@+id/rv_popular"
-                    app:layout_constraintStart_toEndOf="@+id/rv_popular"
-                    app:layout_constraintTop_toTopOf="@+id/rv_popular"
+                    app:layout_constraintBottom_toTopOf="@+id/imageBell"
+                    app:layout_constraintEnd_toEndOf="@+id/imageBell"
+                    app:layout_constraintStart_toEndOf="@+id/imageBell"
+                    app:layout_constraintTop_toTopOf="@+id/imageBell"
                     app:srcCompat="@drawable/red_circle" />
 
                 <TextView
@@ -72,7 +74,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <EditText
-                android:id="@+id/editTextText3"
+                android:id="@+id/etSearch2"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="24dp"
@@ -81,6 +83,7 @@
                 android:background="@drawable/edittext_background"
                 android:drawableStart="@drawable/search_icon"
                 android:ems="10"
+                android:drawablePadding="12dp"
                 android:hint="Search"
                 android:inputType="text"
                 android:padding="8dp" />
@@ -160,6 +163,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/lyCategory1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -195,6 +199,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/lyCategory2"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -230,6 +235,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/lyCategory3"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -265,6 +271,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/lyCategory4"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -300,6 +307,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/lyCategory5"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -320,7 +328,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/cat5"/>
+                            app:srcCompat="@drawable/cat5" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -353,36 +361,30 @@
                     android:textStyle="bold"
                     android:textSize="20sp"/>
 
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:text="See all"
-                    android:textColor="@color/red"/>
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_popular"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@id/rv_popular"
                 android:paddingStart="16dp"
-                android:paddingEnd="16dp"/>
+                android:paddingEnd="16dp" />
 
         </LinearLayout>
     </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_bottom_nav"
+        android:background="#EAEAEA"
         app:itemBackground="@color/white"
         app:itemIconTint="@color/custom_color_bottom_nav"
         app:itemTextColor="@color/custom_color_bottom_nav"
-        android:background="#EAEAEA">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bottom_nav">
 
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
