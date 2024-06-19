@@ -9,6 +9,8 @@ import java.util.List;
 public interface UserAddressDAO {
     @Query("SELECT * FROM UserAddress")
     List<UserAddress> getAllUserAddresses();
+    @Query("DELETE FROM UserAddress")
+    void deleteAll();
 
     @Query("SELECT * FROM UserAddress WHERE id = :id")
     UserAddress getUserAddressById(int id);

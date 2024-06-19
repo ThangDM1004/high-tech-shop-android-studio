@@ -16,4 +16,7 @@ public class UserAddressRepository {
     public void insert(List<UserAddress> userAddressList) {
         userAddressDAO.addUserAddress(userAddressList);
     }
+    public void deleteAll() {
+        userAddressDAO.deleteAll();
+    }
 }

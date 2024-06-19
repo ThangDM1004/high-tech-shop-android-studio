@@ -10,11 +10,21 @@ public class Cart {
     private int id;
     private double totalPrice;
     private int userId;
+    private boolean status;
 
-    public Cart(int id, double totalPrice, int userId) {
+    public Cart(int id, double totalPrice, int userId, boolean status) {
         this.id = id;
         this.totalPrice = totalPrice;
         this.userId = userId;
+        this.status = status;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public int getId() {
