@@ -85,7 +85,9 @@ public class HomePageActivity extends AppCompatActivity {
                     startActivityForResult(intent, REQUEST_CART_ACTIVITY);
                     return true;
                 } else if (item.getItemId() == R.id.menu_profile) {
-                    Toast.makeText(HomePageActivity.this, "Profile selected", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomePageActivity.this, ProfileActivity.class);
+                    intent.putExtra("user", user);
+                    startActivityForResult(intent, REQUEST_CART_ACTIVITY);
                     return true;
                 }
                 return false;
