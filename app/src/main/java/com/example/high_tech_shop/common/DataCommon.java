@@ -91,16 +91,16 @@ public class DataCommon {
     }
 
     private static void insertUserAddress(Context context){
-        UserAddress userAddress_1 = new UserAddress(1, 1, "City 1", "Country 1", "12345");
-        UserAddress userAddress_2 = new UserAddress(2, 1, "City 2", "Country 2", "12345");
-        UserAddress userAddress_3 = new UserAddress(3, 2, "City 3", "Country 3", "12345");
-        UserAddress userAddress_4 = new UserAddress(4, 2, "City 4", "Country 4", "12345");
-        UserAddress userAddress_5 = new UserAddress(5, 3, "City 5", "Country 5", "12345");
-        UserAddress userAddress_6 = new UserAddress(6, 3, "City 6", "Country 6", "12345");
-        UserAddress userAddress_7 = new UserAddress(7, 4, "City 7", "Country 7", "12345");
-        UserAddress userAddress_8 = new UserAddress(8, 4, "City 8", "Country 8", "12345");
-        UserAddress userAddress_9 = new UserAddress(9, 5, "City 9", "Country 9", "12345");
-        UserAddress userAddress_10 = new UserAddress(10, 5, "City 10", "Country 10", "12345");
+        UserAddress userAddress_1 = new UserAddress(1, 1, "Province 1", "Country 1", "12345", "City 1",true);
+        UserAddress userAddress_2 = new UserAddress(2, 1, "Province 2", "Country 2", "12345", "City 2",false);
+        UserAddress userAddress_3 = new UserAddress(3, 2, "Province 3", "Country 3", "12345", "City 3",true);
+        UserAddress userAddress_4 = new UserAddress(4, 2, "Province 4", "Country 4", "12345", "City 4",false);
+        UserAddress userAddress_5 = new UserAddress(5, 3, "Province 5", "Country 5", "12345", "City 5",true);
+        UserAddress userAddress_6 = new UserAddress(6, 3, "Province 6", "Country 6", "12345", "City 6",false);
+        UserAddress userAddress_7 = new UserAddress(7, 4, "Province 7", "Country 7", "12345", "City 7",true);
+        UserAddress userAddress_8 = new UserAddress(8, 4, "Province 8", "Country 8", "12345", "City 8",false);
+        UserAddress userAddress_9 = new UserAddress(9, 5, "Province 9", "Country 9", "12345", "City 9",true);
+        UserAddress userAddress_10 = new UserAddress(10, 5, "Province 10", "Country 10", "12345", "City 10",false);
 
         UserAddressRepository userAddressRepository = new UserAddressRepository(context);
         userAddressRepository.insert(Arrays.asList(userAddress_1, userAddress_2, userAddress_3, userAddress_4, userAddress_5, userAddress_6, userAddress_7, userAddress_8, userAddress_9, userAddress_10));

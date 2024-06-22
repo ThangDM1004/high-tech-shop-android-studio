@@ -8,16 +8,36 @@ public class UserAddress {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private int userId;
+    private String city;
     private String province;
     private String district;
     private String address;
+    private boolean status;
 
-    public UserAddress(int id, int userId, String province, String district, String address) {
+
+    public UserAddress(int id, int userId, String province, String district, String address, String city,boolean status) {
         this.id = id;
         this.userId = userId;
         this.province = province;
         this.district = district;
         this.address = address;
+        this.city=city;
+        this.status = status;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public String getCity() {
+        return city;
+    }
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public int getId() {
