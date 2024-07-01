@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.high_tech_shop"
-        minSdk = 21
+        minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -47,8 +47,10 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:$room_version")
     implementation("com.google.android.material:material:1.12.0")
     implementation("com.github.bumptech.glide:glide:4.13.2")
-    implementation("com.google.code.gson:gson:2.10.1")
-
+    implementation("com.squareup.retrofit2:converter-gson:2.4.0")
+    implementation("com.squareup.retrofit2:retrofit:2.5.0")
+    implementation ("com.google.android.gms:play-services-location:18.0.0")
+    implementation ("com.google.android.gms:play-services-maps:18.0.2")
 
 
 }
