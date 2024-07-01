@@ -8,20 +8,20 @@ public class UserAddress {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private int userId;
-    private String city;
+    private String ward;
     private String province;
     private String district;
     private String address;
     private boolean status;
 
 
-    public UserAddress(int id, int userId, String province, String district, String address, String city,boolean status) {
+    public UserAddress(int id, int userId, String province, String district, String address, String ward,boolean status) {
         this.id = id;
         this.userId = userId;
         this.province = province;
         this.district = district;
         this.address = address;
-        this.city=city;
+        this.ward=ward;
         this.status = status;
     }
 
@@ -33,11 +33,12 @@ public class UserAddress {
         this.status = status;
     }
 
-    public String getCity() {
-        return city;
+    public String getWard() {
+        return ward;
     }
-    public void setCity(String city) {
-        this.city = city;
+
+    public void setWard(String ward) {
+        this.ward = ward;
     }
 
     public int getId() {

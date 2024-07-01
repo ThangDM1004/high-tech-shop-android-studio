@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:orientation="vertical"
-    android:background="f5f5f5"
+    android:background="#f5f5f5"
     tools:context=".user.AddressActivity">
 
     <LinearLayout

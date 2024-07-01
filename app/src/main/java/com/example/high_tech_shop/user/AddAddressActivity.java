@@ -1,6 +1,13 @@
 package com.example.high_tech_shop.user;
 
+import android.content.Intent;
+import android.location.Address;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,18 +16,59 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.high_tech_shop.R;
+import com.example.high_tech_shop.entity.User;
+import com.example.high_tech_shop.entity.UserAddress;
 
 public class AddAddressActivity extends AppCompatActivity {
-
+    private TextView text_location,text_address;
+    private ImageButton button_location;
+    private ImageView btnBackListAddress;
+    private Button btnComplete;
+    private Switch sDefault;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_add_address);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        text_location = findViewById(R.id.text_location);
+        button_location = findViewById(R.id.button_location);
+        text_address = findViewById(R.id.text_address);
+        btnBackListAddress = findViewById(R.id.btnBackListAddress);
+        btnComplete = findViewById(R.id.btnComplete);
+        sDefault = findViewById(R.id.sDefault);
+        Intent intent = getIntent();
+        String location = "";
+        if(intent != null){
+            location = intent.getStringExtra("address");
+            text_location.setText(location);
+        }
+        User user = (User) intent.getSerializableExtra("user");
+        String[] _location = location.split(",");
+        if(_location.length == 3){
+            String province = _location[0];
+            String district = _location[1];
+            String ward = _location[2];
+            UserAddress address = new UserAddress(1,user.getId(),province,district,text_address.getText().toString(),ward,sDefault.isChecked());
+        }else if(_location.length == 2){
+            String province = _location[0];
+            String district = _location[1];
+            UserAddress address = new UserAddress(1,user.getId(),province,district,text_address.getText().toString(),null,sDefault.isChecked());
+        }
+
+        btnBackListAddress.setOnClickListener(v -> {
+            Intent _intent = new Intent(this, AddressActivity.class);
+            _intent.putExtra("user", user);
+            startActivity(_intent);
+            finish();
         });
+        button_location.setOnClickListener(v -> {
+            Intent _intent = new Intent(this, LoadAddressAPIActivity.class);
+            _intent.putExtra("user", user);
+            startActivity(_intent);
+            finish();
+        });
+
+
     }
 }
