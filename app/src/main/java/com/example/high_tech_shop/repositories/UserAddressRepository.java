@@ -19,4 +19,16 @@ public class UserAddressRepository {
     public void deleteAll() {
         userAddressDAO.deleteAll();
     }
+    public List<UserAddress> getUserAddressByUserId(int userId) {
+        return userAddressDAO.getUserAddressesByUserId(userId);
+    }
+    public List<UserAddress> getAll() {
+        return userAddressDAO.getAllUserAddresses();
+    }
+    public UserAddress getUserAddressByUserIdDefault(int userId) {
+        return userAddressDAO.getUserAddressesByUserIdDefault(userId);
+    }
+    public void insert(UserAddress userAddress) {
+        userAddressDAO.addUserAddress(userAddress);
+    }
 }

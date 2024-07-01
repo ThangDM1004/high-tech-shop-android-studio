@@ -106,6 +106,7 @@ public class LoadAddressAPIActivity extends AppCompatActivity {
                             1);
                 } else {
                     getLocation();
+
                 }
             }
         });
