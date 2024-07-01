@@ -26,4 +26,8 @@ public interface UserAddressDAO {
 
     @Delete
     void deleteUserAddress(UserAddress userAddress);
+    @Query("SELECT * FROM UserAddress WHERE userId = :userId AND status = 0")
+    List<UserAddress> getUserAddressesByUserId(int userId);
+    @Query("SELECT * FROM UserAddress WHERE userId = :userId AND status = 1")
+    UserAddress getUserAddressesByUserIdDefault(int userId);
 }
