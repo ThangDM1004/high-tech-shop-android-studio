@@ -29,12 +29,12 @@ public class UserLoginFormActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login_form);
         setTitle("Login");
-        DataCommon.removeData(this);
-        DataCommon.initData(this);
-        cartRepository = new CartRepository(this);
-        cartItemRepository = new CartItemRepository(this);
-        cartItemRepository.deleteAll();
-        cartRepository.deleteAll();
+//        DataCommon.removeData(this);
+//        DataCommon.initData(this);
+//        cartRepository = new CartRepository(this);
+//        cartItemRepository = new CartItemRepository(this);
+//        cartItemRepository.deleteAll();
+//        cartRepository.deleteAll();
         Button loginButton = findViewById(R.id.loginButton);
         userDAO = HighTechShopRoomDatabase.getInstance(this).userDAO();
 

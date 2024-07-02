@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
@@ -20,7 +21,7 @@ import com.example.high_tech_shop.repositories.UserRepository;
 
 public class ProfileActivity extends AppCompatActivity {
     private ConstraintLayout address;
-    TextView tvFullName,tvEmail, tvPhone, tvDataOfBirth;
+    TextView tvFullName,tvEmail, tvPhone, tvDataOfBirth, tvChange;
     Button btnEditProfile, btnBack;
     UserRepository userRepository;
     @Override
@@ -35,14 +36,15 @@ public class ProfileActivity extends AppCompatActivity {
         tvEmail = findViewById(R.id.textView18);
         tvPhone = findViewById(R.id.tvPhoneContent);
         tvDataOfBirth = findViewById(R.id.tvDoBContent);
+        tvChange = findViewById(R.id.tvChange);
         btnEditProfile = findViewById(R.id.btnEdit);
         btnBack = findViewById(R.id.btnBack);
 
         userRepository = new UserRepository(this);
 
         Intent intent = getIntent();
-        final User user = (User) intent.getSerializableExtra("user");
-
+        final User user11 = (User) intent.getSerializableExtra("user");
+        User user = userRepository.findByEmail(user11.getEmail());
         assert user != null;
         tvFullName.setText(user.getFullName());
         tvEmail.setText(user.getEmail());
@@ -99,10 +101,10 @@ public class ProfileActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                tvFullName.setText(user.getFullName());
-                                tvEmail.setText(user.getEmail());
-                                tvPhone.setText(user.getPhone());
-                                tvDataOfBirth.setText(user.getDob());
+                                tvFullName.setText(user1.getFullName());
+                                tvEmail.setText(user1.getEmail());
+                                tvPhone.setText(user1.getPhone());
+                                tvDataOfBirth.setText(user1.getDob());
                             }
                         });
 
@@ -134,6 +136,58 @@ public class ProfileActivity extends AppCompatActivity {
                 setResult(RESULT_OK, intent);
 
                 finish();
+            }
+        });
+        tvChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog dialog = new Dialog(ProfileActivity.this);
+                dialog.setContentView(R.layout.activity_change_password_user);
+                Intent intent = getIntent();
+                User user = (User) intent.getSerializableExtra("user");
+                assert user != null;
+                User currentUser = userRepository.findByEmail(user.getEmail());
+
+                EditText currentPass, newPass,confirmPass;
+                Button btnUpdate, btnCancel;
+                currentPass = dialog.findViewById(R.id.editTextTextPassword);
+                newPass = dialog.findViewById(R.id.editTextTextPassword2);
+                confirmPass = dialog.findViewById(R.id.editTextTextPassword3);
+                btnUpdate = dialog.findViewById(R.id.button3);
+                btnCancel = dialog.findViewById(R.id.button4);
+
+                btnUpdate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        boolean f = true;
+                        if(currentPass.getText().toString().isEmpty()||
+                                newPass.getText().toString().isEmpty()||
+                                confirmPass.getText().toString().isEmpty()){
+                            Toast.makeText(getApplicationContext(), "Can not empty", Toast.LENGTH_SHORT).show();
+                            f = false;
+                        }
+                        if(!currentPass.getText().toString().equals(currentUser.getPassword())){
+                            f = false;
+                            Toast.makeText(getApplicationContext(), "Current password is wrong", Toast.LENGTH_SHORT).show();
+                        }
+                        if(newPass.getText().toString().equals(currentPass.getText().toString())){
+                            f = false;
+                            Toast.makeText(getApplicationContext(), "The new password must be different from the current password.", Toast.LENGTH_SHORT).show();
+                        }
+                        if(!newPass.getText().toString().equals(confirmPass.getText().toString())){
+                            f = false;
+                            Toast.makeText(getApplicationContext(), "New password and confirm password do not match.", Toast.LENGTH_SHORT).show();
+                        }
+                        if(f){
+                            currentUser.setPassword(newPass.getText().toString());
+                            userRepository.update(currentUser);
+                            Toast.makeText(getApplicationContext(), "Change password success.", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        }
+                    }
+                });
+                dialog.show();
+
             }
         });
 
