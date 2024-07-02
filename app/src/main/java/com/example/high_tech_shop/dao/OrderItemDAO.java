@@ -19,4 +19,6 @@ public interface OrderItemDAO {
     OrderItem getOrderItemById(int orderItemId);
     @Query("SELECT * FROM OrderItem")
     List<OrderItem> getAllOrderItems();
+    @Query("SELECT * FROM OrderItem WHERE orderId IN (:orderIds)")
+    List<OrderItem> getOrderItemsByOrderIds(List<Integer> orderIds);
 }

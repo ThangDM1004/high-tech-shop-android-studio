@@ -107,6 +107,7 @@
                             android:orientation="horizontal">
 
                             <LinearLayout
+                                android:id="@+id/order_history"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_margin="10dp"
@@ -130,7 +131,7 @@
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@drawable/wallet" />
+                                        app:srcCompat="@drawable/order_history" />
                                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                                 <TextView
@@ -139,7 +140,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="8dp"
                                     android:layout_weight="1"
-                                    android:text="Payment"
+                                    android:text="Order History"
                                     android:textAlignment="center"
                                     android:textColor="@color/black"
                                     android:textSize="13sp"

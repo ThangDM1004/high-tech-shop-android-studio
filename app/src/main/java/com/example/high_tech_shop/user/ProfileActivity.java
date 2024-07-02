@@ -6,12 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -24,6 +23,7 @@ public class ProfileActivity extends AppCompatActivity {
     TextView tvFullName,tvEmail, tvPhone, tvDataOfBirth, tvChange;
     Button btnEditProfile, btnBack;
     UserRepository userRepository;
+    private LinearLayout orderHistory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +31,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         address = findViewById(R.id.address);
+        orderHistory = findViewById(R.id.order_history);
 
         tvFullName = findViewById(R.id.tvUserName);
         tvEmail = findViewById(R.id.textView18);
@@ -58,6 +59,15 @@ public class ProfileActivity extends AppCompatActivity {
                 intent.putExtra("user", user);
                 startActivity(intent);
                 finish();
+            }
+        });
+        orderHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, OrderActivity.class);
+                User user = userRepository.findByEmail(user11.getEmail());
+                intent.putExtra("user", user);
+                startActivity(intent);
             }
         });
         btnEditProfile.setOnClickListener(new View.OnClickListener() {

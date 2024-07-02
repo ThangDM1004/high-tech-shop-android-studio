@@ -19,4 +19,6 @@ public interface OrderDAO {
     public void updateOrder(Order order);
     @Delete
     public void deleteOrder(Order order);
+    @Query("SELECT id FROM `Order` WHERE userId = :userId")
+    List<Integer> getOrdersByUserId(int userId);
 }

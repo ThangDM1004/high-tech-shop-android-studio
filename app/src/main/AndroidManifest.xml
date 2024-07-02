@@ -18,11 +18,14 @@
         android:theme="@style/Theme.High_tech_shop"
         tools:targetApi="31">
         <activity
+            android:name=".user.OrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".user.UpdateProfileUser"
             android:exported="false" />
         <activity
             android:name=".user.LoadAddressAPIActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".user.AddAddressActivity"
             android:exported="false" />
