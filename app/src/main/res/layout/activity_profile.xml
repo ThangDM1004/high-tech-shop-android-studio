@@ -339,21 +339,16 @@
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:textStyle="bold" />
+            <Button
+                android:id="@+id/btnBack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/grey_background"
+                android:text="Back to homepage"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#EAEAEA"
-        app:itemBackground="@color/white"
-        app:itemIconTint="@color/custom_color_bottom_nav"
-        app:itemTextColor="@color/custom_color_bottom_nav"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_bottom_nav">
-
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
 </androidx.constraintlayout.widget.ConstraintLayout>

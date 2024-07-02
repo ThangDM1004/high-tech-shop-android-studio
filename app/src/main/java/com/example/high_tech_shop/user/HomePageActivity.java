@@ -159,8 +159,17 @@ public class HomePageActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CART_ACTIVITY) {
             if (resultCode == RESULT_OK) {
+                assert data != null;
                 boolean returnFromCart = data.getBooleanExtra("returnFromCart", false);
+                boolean returnFromProfileUpdate = data.getBooleanExtra("returnFromProfileUpdate", false);
                 if (returnFromCart) {
+                    bottomNavigationView = findViewById(R.id.bottom_nav);
+                    bottomNavigationView.setSelectedItemId(R.id.menu_explorer);
+                }
+                if (returnFromProfileUpdate) {
+                    User updatedUser = (User) data.getSerializableExtra("user");
+                    user = updatedUser;
+                    ( (TextView)findViewById(R.id.textView5)).setText("Welcome "+ updatedUser.getFullName());
                     bottomNavigationView = findViewById(R.id.bottom_nav);
                     bottomNavigationView.setSelectedItemId(R.id.menu_explorer);
                 }

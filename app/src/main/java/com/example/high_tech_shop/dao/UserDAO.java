@@ -23,4 +23,6 @@ public interface UserDAO {
     void deleteAll();
     @Query("Select * from user Where email =:email And password=:password")
     User selectUserByUsernameAndPassword(String email, String password);
+    @Query("Select * from user Where email =:email")
+    User selectUserByEmail(String email);
 }

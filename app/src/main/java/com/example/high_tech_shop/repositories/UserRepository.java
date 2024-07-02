@@ -19,4 +19,10 @@ public class UserRepository {
     public void deleteAll(){
         this.userDAO.deleteAll();
     }
+    public void update(User user){
+        this.userDAO.update(user);
+    }
+    public User findByEmail(String email){
+        return this.userDAO.selectUserByEmail(email);
+    }
 }
