@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.high_tech_shop.MainActivity;
 import com.example.high_tech_shop.R;
+import com.example.high_tech_shop.admin.TechActivity;
 import com.example.high_tech_shop.common.DataCommon;
 import com.example.high_tech_shop.dao.UserDAO;
 import com.example.high_tech_shop.entity.Role;
@@ -52,6 +53,10 @@ public class UserLoginFormActivity extends AppCompatActivity{
                         Toast.makeText(UserLoginFormActivity.this, "Login fail", Toast.LENGTH_SHORT).show();
                     }else if(user.getRole() == Role.USER){
                         Intent intent = new Intent(UserLoginFormActivity.this, HomePageActivity.class);
+                        intent.putExtra("user", (Serializable) user);
+                        startActivity(intent);
+                    }else if(user.getRole() == Role.ADMIN){
+                        Intent intent = new Intent(UserLoginFormActivity.this, TechActivity.class);
                         intent.putExtra("user", (Serializable) user);
                         startActivity(intent);
                     }
