@@ -16,4 +16,10 @@ public class OrderRepository {
     public void insert(List<Order> orders) {
         orderDAO.addOrder(orders);
     }
+    public List<Order> getAll() {
+        return orderDAO.getAllOrders();
+    }
+    public Order getOrderById(int id) {
+        return orderDAO.getOrderById(id);
+    }
 }

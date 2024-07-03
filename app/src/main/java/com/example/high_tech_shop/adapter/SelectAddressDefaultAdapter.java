@@ -6,38 +6,38 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.high_tech_shop.R;
-import com.example.high_tech_shop.entity.*;
+import com.example.high_tech_shop.entity.Cart;
+import com.example.high_tech_shop.entity.User;
+import com.example.high_tech_shop.entity.UserAddress;
 import com.example.high_tech_shop.repositories.UserRepository;
 import com.example.high_tech_shop.user.AddAddressActivity;
+import com.example.high_tech_shop.user.CartActivity;
 
-import java.util.List;
-
-public class AddressDefaultAdapter extends RecyclerView.Adapter<AddressDefaultAdapter.ViewHolder> {
+public class SelectAddressDefaultAdapter extends RecyclerView.Adapter<SelectAddressDefaultAdapter.ViewHolder>{
     Context context;
     UserAddress userAddress;
     private UserRepository userRepository;
 
-    public AddressDefaultAdapter(Context context, UserAddress userAddress) {
+    public SelectAddressDefaultAdapter(Context context, UserAddress userAddress) {
         this.context = context;
         this.userAddress = userAddress;
     }
 
     @NonNull
     @Override
-    public AddressDefaultAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SelectAddressDefaultAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.activity_address_default_item, parent, false);
-        return new AddressDefaultAdapter.ViewHolder(view);
+        return new SelectAddressDefaultAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AddressDefaultAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SelectAddressDefaultAdapter.ViewHolder holder, int position) {
         if (userAddress.getDistrict() == null && userAddress.getWard() == null) {
             holder.tvCity_default.setText(userAddress.getProvince());
         }
@@ -54,20 +54,17 @@ public class AddressDefaultAdapter extends RecyclerView.Adapter<AddressDefaultAd
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, AddAddressActivity.class);
+                Intent intent = new Intent(context, CartActivity.class);
                 userRepository = new UserRepository(context);
-                intent.putExtra("user", userRepository.findById(userAddress.getUserId()));
-                intent.putExtra("_addressUpdate", userAddress.getAddress());
-                intent.putExtra("isDefault", userAddress.isStatus());
-                intent.putExtra("addressId", userAddress.getId());
+                User user = userRepository.findById(userAddress.getUserId());
+                intent.putExtra("user", user);
                 if (userAddress.getDistrict() == null && userAddress.getWard() == null) {
-                    intent.putExtra("addressUpdate", userAddress.getProvince());
+                    intent.putExtra("address", userAddress.getProvince());
                 } else if (userAddress.getDistrict() != null && userAddress.getWard() == null) {
-                    intent.putExtra("addressUpdate", userAddress.getProvince() + "," + userAddress.getDistrict());
+                    intent.putExtra("address", userAddress.getProvince() + "," + userAddress.getDistrict());
                 } else if (userAddress.getDistrict() != null && userAddress.getWard() != null) {
-                    intent.putExtra("addressUpdate", userAddress.getProvince() + "," + userAddress.getDistrict() + "," + userAddress.getWard());
+                    intent.putExtra("address", userAddress.getProvince() + "," + userAddress.getDistrict() + "," + userAddress.getWard());
                 }
-
                 context.startActivity(intent);
             }
         });
@@ -75,7 +72,7 @@ public class AddressDefaultAdapter extends RecyclerView.Adapter<AddressDefaultAd
 
     @Override
     public int getItemCount() {
-       return 1;
+        return 1;
     }
     @SuppressLint("NotifyDataSetChanged")
     public void setTasks(UserAddress _userAddress) {

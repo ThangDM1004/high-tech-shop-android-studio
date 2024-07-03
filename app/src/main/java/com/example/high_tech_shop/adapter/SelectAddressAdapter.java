@@ -12,36 +12,37 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.high_tech_shop.R;
+import com.example.high_tech_shop.entity.Cart;
 import com.example.high_tech_shop.entity.User;
 import com.example.high_tech_shop.entity.UserAddress;
-import com.example.high_tech_shop.repositories.ProductRepository;
 import com.example.high_tech_shop.repositories.UserAddressRepository;
 import com.example.high_tech_shop.repositories.UserRepository;
 import com.example.high_tech_shop.user.AddAddressActivity;
+import com.example.high_tech_shop.user.CartActivity;
 
 import java.util.List;
 
-public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHolder> {
+public class SelectAddressAdapter extends RecyclerView.Adapter<SelectAddressAdapter.ViewHolder> {
     private List<UserAddress> userAddressList;
     private Context context;
     private UserRepository userRepository;
     private UserAddressRepository repository;
 
-    public AddressAdapter(Context context, List<UserAddress> userAddressList) {
+    public SelectAddressAdapter(Context context, List<UserAddress> userAddressList) {
         this.userAddressList = userAddressList;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public AddressAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SelectAddressAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.activity_address_item, parent, false);
-        return new AddressAdapter.ViewHolder(view);
+        return new SelectAddressAdapter.ViewHolder(view);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull AddressAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SelectAddressAdapter.ViewHolder holder, int position) {
         UserAddress address = userAddressList.get(position);
 
         if (address.getDistrict() == null && address.getWard() == null) {
@@ -55,23 +56,18 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, AddAddressActivity.class);
+                Intent intent = new Intent(context, CartActivity.class);
                 userRepository = new UserRepository(context);
                 repository = new UserAddressRepository(context);
                 User user = userRepository.findById(address.getUserId());
-                UserAddress userAddress = repository.getUserAddressByUserIdDefault(address.getUserId());
                 intent.putExtra("user", user);
-                intent.putExtra("_addressUpdate", address.getAddress());
-                intent.putExtra("isDefault", address.isStatus());
-                intent.putExtra("addressId", address.getId());
                 if (address.getDistrict() == null && address.getWard() == null) {
-                    intent.putExtra("addressUpdate", address.getProvince());
+                    intent.putExtra("address", address.getProvince());
                 } else if (address.getDistrict() != null && address.getWard() == null) {
-                    intent.putExtra("addressUpdate", address.getProvince() + "," + address.getDistrict());
+                    intent.putExtra("address", address.getProvince() + "," + address.getDistrict());
                 } else if (address.getDistrict() != null && address.getWard() != null) {
-                    intent.putExtra("addressUpdate", address.getProvince() + "," + address.getDistrict() + "," + address.getWard());
+                    intent.putExtra("address", address.getProvince() + "," + address.getDistrict() + "," + address.getWard());
                 }
-
                 context.startActivity(intent);
             }
         });
@@ -102,4 +98,3 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         }
     }
 }
-

@@ -16,6 +16,9 @@ public class OrderItemRepository {
     public void insert(List<OrderItem> orderItems) {
         orderItemDAO.addOrderItem(orderItems);
     }
+    public List<OrderItem> getAll() {
+        return orderItemDAO.getAllOrderItems();
+    }
 
 
 }
