@@ -16,8 +16,16 @@ public class OrderItemRepository {
     public void insert(List<OrderItem> orderItems) {
         orderItemDAO.addOrderItem(orderItems);
     }
+
     public List<OrderItem> getOrderItemsByOrderIds(List<Integer> orderIds) {
         return orderItemDAO.getOrderItemsByOrderIds(orderIds);
+    }
+    public List<OrderItem> getAll() {
+        return orderItemDAO.getAllOrderItems();
+    }
+
+    public OrderItem getOrderItemByOrderId(Integer orderId) {
+        return orderItemDAO.getOrderItemByOrderId(orderId);
     }
 
 }

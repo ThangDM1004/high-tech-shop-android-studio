@@ -44,10 +44,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoadAddressAPIActivity extends AppCompatActivity {
-    private  User user;
+    private String[] location;
+    private User user;
     private LocationHelper locationHelper;
     private Spinner spinnerProvince, spinnerDistrict, spinnerWard;
-    private EditText etAddress;
     private Button btnSave;
     private GHNApi ghnApi;
     private List<String> provinceNames = new ArrayList<>();
@@ -76,11 +76,19 @@ public class LoadAddressAPIActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
+        String address = null;
+        if (intent.hasExtra("location")) {
+            location = intent.getStringExtra("location").split(",");
+            address = intent.getStringExtra("_location");
+        }
+        String finalAddress = address;
         btnBackAddNewAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoadAddressAPIActivity.this, AddAddressActivity.class);
                 intent.putExtra("user", user);
+                intent.putExtra("addressUpdate", selectedProvince + "," + selectedDistrict + "," + selectedWard);
+                intent.putExtra("_addressUpdate", finalAddress);
                 startActivity(intent);
                 finish();
             }
@@ -162,18 +170,43 @@ public class LoadAddressAPIActivity extends AppCompatActivity {
     }
 
     private void updateProvinceSpinner(List<Province> provinces) {
+        Intent intent = getIntent();
+        int locationId = 0;
+        String provinceName = "";
         provinceNames.clear();
+        if (intent.hasExtra("location")) {
+            provinceName = location[0];
+            provinceNames.add(location[0]);
+        }
         for (Province province : provinces) {
-            provinceNames.add(province.getProvinceName());
+            if (intent.hasExtra("location")) {
+                if (province.getProvinceName().equals(location[0])) {
+                    locationId = province.getProvinceID();
+                } else {
+                    provinceNames.add(province.getProvinceName());
+                }
+            } else {
+                provinceNames.add(province.getProvinceName());
+            }
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, provinceNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerProvince.setAdapter(adapter);
+        String finalProvinceName = provinceName;
+        int finalLocationId = locationId;
+        String finalProvinceName1 = provinceName;
         spinnerProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedProvince = provinces.get(position).getProvinceName();
-                loadDistricts(provinces.get(position).getProvinceID());
+
+                if (intent.hasExtra("location")) {
+                    selectedProvince = finalProvinceName1;
+                    loadDistricts(finalLocationId);
+                } else {
+                    selectedProvince = provinces.get(position).getProvinceName();
+                    loadDistricts(provinces.get(position).getProvinceID());
+                }
+
             }
 
             @Override
@@ -207,18 +240,42 @@ public class LoadAddressAPIActivity extends AppCompatActivity {
     }
 
     private void updateDistrictSpinner(List<District> districts) {
+        Intent intent = getIntent();
         districtNames.clear();
+        int locationId = 0;
+        String districtName = "";
+        if (intent.hasExtra("location")) {
+            districtName = location[1];
+            districtNames.add(location[1]);
+        }
         for (District district : districts) {
-            districtNames.add(district.getDistrictName());
+            if (intent.hasExtra("location")) {
+                if (district.getDistrictName().equals(location[1])) {
+                    locationId = district.getDistrictID();
+                } else {
+                    districtNames.add(district.getDistrictName());
+                }
+            } else {
+                districtNames.add(district.getDistrictName());
+            }
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, districtNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDistrict.setAdapter(adapter);
+
+        String finalDistrictName = districtName;
+        int finalLocationId = locationId;
         spinnerDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedDistrict = districts.get(position).getDistrictName();
-                loadWards(districts.get(position).getDistrictID());
+                Intent intent = getIntent();
+                if (intent.hasExtra("location")) {
+                    selectedDistrict = finalDistrictName;
+                    loadWards(finalLocationId);
+                } else {
+                    selectedDistrict = districts.get(position).getDistrictName();
+                    loadWards(districts.get(position).getDistrictID());
+                }
             }
 
             @Override
@@ -250,17 +307,36 @@ public class LoadAddressAPIActivity extends AppCompatActivity {
     }
 
     private void updateWardSpinner(List<Ward> wards) {
+        Intent intent = getIntent();
         wardNames.clear();
-        for (Ward ward : wards) {
-            wardNames.add(ward.getWardName());
+        String wardName = "";
+        if (intent.hasExtra("location")) {
+            wardName = location[2];
+            wardNames.add(location[2]);
         }
+        for (Ward ward : wards) {
+            if (intent.hasExtra("location")) {
+                if (ward.getWardName().equals(location[2])) {
+                } else {
+                    wardNames.add(ward.getWardName());
+                }
+            } else {
+                wardNames.add(ward.getWardName());
+            }
+        }
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, wardNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerWard.setAdapter(adapter);
+        String finalWardName = wardName;
         spinnerWard.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedWard = wards.get(position).getWardName();
+                if (intent.hasExtra("location")) {
+                    selectedWard = finalWardName;
+                } else {
+                    selectedWard = wards.get(position).getWardName();
+                }
             }
 
             @Override

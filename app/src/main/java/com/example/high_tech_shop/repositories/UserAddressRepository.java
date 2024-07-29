@@ -22,6 +22,9 @@ public class UserAddressRepository {
     public List<UserAddress> getUserAddressByUserId(int userId) {
         return userAddressDAO.getUserAddressesByUserId(userId);
     }
+    public UserAddress getUserAddressById(int id) {
+        return this.userAddressDAO.getUserAddressById(id);
+    }
     public List<UserAddress> getAll() {
         return userAddressDAO.getAllUserAddresses();
     }
@@ -30,5 +33,14 @@ public class UserAddressRepository {
     }
     public void insert(UserAddress userAddress) {
         userAddressDAO.addUserAddress(userAddress);
+    }
+    public void delete(UserAddress userAddress) {
+        this.userAddressDAO.deleteUserAddress(userAddress);
+    }
+    public void update(UserAddress userAddress) {
+        this.userAddressDAO.updateUserAddress(userAddress);
+    }
+    public void update(List<UserAddress> userAddressList) {
+        this.userAddressDAO.updateUserAddress(userAddressList);
     }
 }

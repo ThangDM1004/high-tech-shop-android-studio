@@ -24,6 +24,8 @@ public interface CartItemDAO {
     void updateCartItem(CartItem cartItem);
     @Delete
     void deleteCartItem(CartItem cartItem);
+    @Delete
+    void deleteCartItem(List<CartItem> cartItems);
     @Query("DELETE FROM CartItem")
     void deleteAll();
     @Query("SELECT * FROM cartitem WHERE cartId = :cartId AND productId = :productId")

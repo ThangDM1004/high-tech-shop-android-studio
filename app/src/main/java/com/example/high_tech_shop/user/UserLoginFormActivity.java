@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.high_tech_shop.MainActivity;
 import com.example.high_tech_shop.R;
-import com.example.high_tech_shop.admin.TechActivity;
+import com.example.high_tech_shop.admin.AdminHomeActivity;
 import com.example.high_tech_shop.common.DataCommon;
 import com.example.high_tech_shop.dao.UserDAO;
 import com.example.high_tech_shop.entity.Role;
@@ -18,6 +18,7 @@ import com.example.high_tech_shop.entity.User;
 import com.example.high_tech_shop.repositories.CartItemRepository;
 import com.example.high_tech_shop.repositories.CartRepository;
 import com.example.high_tech_shop.room.HighTechShopRoomDatabase;
+import com.example.high_tech_shop.shipper.ShipperMainActivity;
 
 import java.io.Serializable;
 
@@ -30,12 +31,12 @@ public class UserLoginFormActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login_form);
         setTitle("Login");
-//        DataCommon.removeData(this);
-//        DataCommon.initData(this);
-//        cartRepository = new CartRepository(this);
-//        cartItemRepository = new CartItemRepository(this);
-//        cartItemRepository.deleteAll();
-//        cartRepository.deleteAll();
+        DataCommon.removeData(this);
+        DataCommon.initData(this);
+        cartRepository = new CartRepository(this);
+        cartItemRepository = new CartItemRepository(this);
+        cartItemRepository.deleteAll();
+        cartRepository.deleteAll();
         Button loginButton = findViewById(R.id.loginButton);
         userDAO = HighTechShopRoomDatabase.getInstance(this).userDAO();
 
@@ -55,8 +56,13 @@ public class UserLoginFormActivity extends AppCompatActivity{
                         Intent intent = new Intent(UserLoginFormActivity.this, HomePageActivity.class);
                         intent.putExtra("user", (Serializable) user);
                         startActivity(intent);
-                    }else if(user.getRole() == Role.ADMIN){
-                        Intent intent = new Intent(UserLoginFormActivity.this, TechActivity.class);
+                    }
+                    else if(user.getRole() == Role.ADMIN){
+                        Intent intent = new Intent(UserLoginFormActivity.this, AdminHomeActivity.class);
+                        intent.putExtra("admin", (Serializable) user);
+                        startActivity(intent);
+                    } else if(user.getRole() == Role.SHIPPER){
+                        Intent intent = new Intent(UserLoginFormActivity.this, ShipperMainActivity.class);
                         intent.putExtra("user", (Serializable) user);
                         startActivity(intent);
                     }
